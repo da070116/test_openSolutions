@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class CustomUser(AbstractUser):
+
+class Visitor(AbstractUser):
     name = models.CharField(blank=True, max_length=125)
 
     def __str__(self):

@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
 
-    'enterest.tokenusers',
+    'tokenusers',
+    'rest_api',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -104,8 +108,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 
+}
 
+AUTH_USER_MODEL = 'tokenusers.Visitor'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
