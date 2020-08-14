@@ -19,3 +19,9 @@ class VisitorSerializer(serializers.ModelSerializer):
         visitor.save()
         Token.objects.create(user=visitor)
         return visitor
+
+
+class VisitorViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Visitor
+        fields = ('email', 'username',)

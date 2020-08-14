@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.permissions import DjangoModelPermissions
+
 from . import models, serializers
 
 
@@ -13,5 +15,11 @@ class OrderList(generics.ListAPIView):
 
 
 class OrderDetail(generics.RetrieveAPIView):
+    queryset = models.Order.objects.all()
+    serializer_class = serializers.OrderDetailSerializer
+
+
+class OrderManage(generics.RetrieveUpdateAPIView):
+    permission_classes = (DjangoModelPermissions,)
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderDetailSerializer
