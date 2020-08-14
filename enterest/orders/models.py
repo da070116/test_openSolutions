@@ -1,5 +1,5 @@
 from django.db import models
-from tokenusers.models import Visitor
+from enterest.tokenusers.models import Visitor
 
 
 class Order(models.Model):
