@@ -9,11 +9,10 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -22,10 +21,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '49@8=coih3s@sm)z7xh@z^_-mk=j6j+!h6kgrwu)&ew+ht91)%'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '49@8=coih3s@sm)z7xh@z^_-mk=j6j+!h6kgrwu)&ew+ht91)%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = []
 
@@ -43,8 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
 
-    'tokenusers',
-    'orders',
+    'enterest.tokenusers',
+    'enterest.orders',
 ]
 
 MIDDLEWARE = [
