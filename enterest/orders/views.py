@@ -11,10 +11,7 @@ class OrderCreate(generics.CreateAPIView):
 
 class OrderShowList(generics.ListAPIView):
     serializer_class = serializers.OrderSerializer
-
-    def get_queryset(self):
-        order_detail = self.kwargs['pk']
-        return models.Order.objects.filter(pk=order_detail)
+    queryset = models.Order.objects.all()
 
 
 class OrderShowDetailed(generics.RetrieveAPIView):
