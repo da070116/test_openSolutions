@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path('register/', views.VisitorCreate.as_view(), name="register"),
-    path('list/', views.VisitorListView.as_view(), name="list"),
-    path('auth/', include('rest_auth.urls'))
+    path('display/', views.VisitorShowList.as_view(), name="list"),
+    path('authorize/', include('rest_auth.urls'))
 ]

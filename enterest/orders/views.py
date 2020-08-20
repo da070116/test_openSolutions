@@ -9,19 +9,21 @@ class OrderCreate(generics.CreateAPIView):
     serializer_class = serializers.OrderSerializer
 
 
-class OrderList(generics.ListAPIView):
-    queryset = models.Order.objects.all()
+class OrderShowList(generics.ListAPIView):
     serializer_class = serializers.OrderSerializer
-
-
-class OrderDetail(generics.RetrieveAPIView):
-    queryset = models.Order.objects.all()
-    serializer_class = serializers.OrderDetailSerializer
 
     def get_queryset(self):
         order_detail = self.kwargs['pk']
         return models.Order.objects.filter(pk=order_detail)
 
+
+class OrderShowDetailed(generics.RetrieveAPIView):
+
+    serializer_class = serializers.OrderDetailSerializer
+
+    def get_queryset(self):
+        order_detail = self.kwargs['pk']
+        return models.Order.objects.filter(pk=order_detail)
 
 
 class OrderManage(generics.RetrieveUpdateAPIView):
@@ -31,4 +33,3 @@ class OrderManage(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         order_to_manage = self.kwargs['pk']
         return models.Order.objects.filter(pk=order_to_manage)
-

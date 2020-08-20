@@ -5,7 +5,7 @@ from . import models
 from . import serializers
 
 
-class VisitorListView(generics.ListAPIView):
+class VisitorShowList(generics.ListAPIView):
     queryset = models.Visitor.objects.all()
     serializer_class = serializers.VisitorViewSerializer
 
