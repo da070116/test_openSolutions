@@ -18,8 +18,17 @@ class OrderDetail(generics.RetrieveAPIView):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderDetailSerializer
 
+    def get_queryset(self):
+        order_detail = self.kwargs['pk']
+        return models.Order.objects.filter(pk=order_detail)
+
+
 
 class OrderManage(generics.RetrieveUpdateAPIView):
     permission_classes = (DjangoModelPermissions,)
-    queryset = models.Order.objects.all()
     serializer_class = serializers.OrderDetailSerializer
+
+    def get_queryset(self):
+        order_to_manage = self.kwargs['pk']
+        return models.Order.objects.filter(pk=order_to_manage)
+
